@@ -1,7 +1,8 @@
 (() => {
   const DECK_KEY = 'mrmime:deck';
-  const DURATION_KEY = 'mrmime:duration';
+  const DURATION_KEY = 'mrmime:duration:v2';
   const $ = (id) => document.getElementById(id);
+  const fmt = (s) => Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
   const screens = { home: $('home'), play: $('play'), end: $('end') };
 
   function show(name) {
@@ -41,33 +42,49 @@
   }
 
   function renderHome() {
-    $('duration').value = localStorage.getItem(DURATION_KEY) || 45;
+    $('duration').value = localStorage.getItem(DURATION_KEY) || 180;
     $('remaining').textContent = `Mots restants : ${deck.length} / ${WORDS.length}`;
     show('home');
   }
 
   function renderTimer() {
     const left = Math.max(0, Math.ceil((endAt - Date.now()) / 1000));
-    $('timer').textContent = left;
+    $('timer').textContent = fmt(left);
     $('timer').classList.toggle('low', left <= 5);
     if (left <= 0) finish();
   }
 
+  let wake = null;
+  async function requestWake() {
+    try { if ('wakeLock' in navigator) wake = await navigator.wakeLock.request('screen'); } catch (e) {}
+  }
+  function releaseWake() {
+    try { if (wake) wake.release(); } catch (e) {}
+    wake = null;
+  }
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && tick) requestWake();
+  });
+
   function start() {
     let d = parseInt($('duration').value, 10);
-    if (!(d >= 5)) d = 45;
+    if (!(d >= 5)) d = 180;
     d = Math.min(d, 600);
     try { localStorage.setItem(DURATION_KEY, d); } catch (e) {}
     score = 0;
     endAt = Date.now() + d * 1000;
     nextWord();
     show('play');
+    requestWake();
     renderTimer();
     tick = setInterval(renderTimer, 200);
   }
 
   function finish() {
     clearInterval(tick);
+    tick = null;
+    releaseWake();
+    if (navigator.vibrate) navigator.vibrate(300);
     $('score').textContent = score;
     show('end');
   }
