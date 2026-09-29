@@ -51,5 +51,16 @@ const WORDS = [
 "Hésiter","Se dépêcher","Attendre","Chercher","Compter","Dessiner","Découper","Plier",
 "Déchirer","Mélanger","Verser","Mordre","Lécher","Avaler","Flotter","Voler",
 "Ramasser","Creuser","Arroser","Bricoler","Visser","Fouiller","Peser","Emballer",
-"Tirer la langue","Faire un clin d'œil"
+"Tirer la langue","Faire un clin d'œil","Se raser","Claquer des doigts","Se boucher le nez","Montrer ses muscles","Faire la roue","Faire le poirier",
+"Traire une vache","Jouer aux cartes","Préparer un sandwich","Étendre le linge","Passer la serpillière","Faire son lit","Avoir le vertige","Faire des grimaces",
+"Pierre-feuille-ciseaux","Faire du hula hoop","Descendre un toboggan","Boire à la paille","Faire un massage","Ouvrir une boîte de conserve","Presser un citron","Faire sauter une crêpe",
+"Se frotter les mains","Faire un nœud de cravate","Faire ses lacets","Envoyer un SMS","Éplucher une banane","Pousser une voiture en panne","Marcher dans la neige","Sortir les poubelles",
+"Faire un bras de fer","Se cogner l'orteil","Supplier","Chatouiller","Faire de la poterie","Faire un puzzle","Écouter aux portes","Déménager",
+"Avoir peur","Être amoureux","Bronzer","Marcher en talons","Célébrer une victoire","Faire des ricochets","Fermer une valise trop pleine","Mesurer",
+"Cirer des chaussures","Casser une noix","Jouer à pile ou face","Se limer les ongles","Menottes","Loupe","Sac à main","Lasso",
+"Télécommande","Poussette","Pistolet à eau","Bouée","Ampoule","Éventail","Matelas gonflable","Cactus",
+"Drapeau","Arbre","Cornet de glace","Hamburger","Tour Eiffel","Pont","Escalier","Moulin à vent",
+"Phare","Cascade","Cerf","Paon","Taureau","Scorpion","Nain","Contorsionniste",
+"Mariée","Personne âgée","Femme enceinte","Somnambule","Célébrité","Extraterrestre","Agent de circulation","Ouvrier de chantier",
+"Cracheur de feu","Ange","Baseball","Saut à l'élastique"
 ];
