@@ -1,0 +1,9 @@
+services:
+  mrmime:
+    build: .
+    image: mrmime
+    container_name: mrmime
+    restart: unless-stopped
+    ports:
+      # Exposé uniquement en local : le reverse proxy (HTTPS) fait le lien.
+      - "127.0.0.1:${PORT:-8085}:80"

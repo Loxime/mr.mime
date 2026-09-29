@@ -1,0 +1,24 @@
+[hidden] { display: none !important; }
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  background: #fff; color: #000;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+main { height: 100%; max-width: 640px; margin: 0 auto; padding: 24px; }
+section { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; text-align: center; }
+h1 { margin: 0; font-size: 2rem; }
+label { display: flex; flex-direction: column; gap: 8px; font-size: 1.1rem; }
+input { font: inherit; font-size: 1.5rem; width: 6rem; padding: 8px; text-align: center; border: 2px solid #000; border-radius: 8px; }
+button { font: inherit; font-size: 1.3rem; padding: 16px 28px; border: 2px solid #000; border-radius: 10px; background: #fff; color: #000; cursor: pointer; }
+button.primary { background: #000; color: #fff; }
+button.link { border: 0; background: none; font-size: 1rem; text-decoration: underline; padding: 8px; }
+button:focus-visible, input:focus-visible { outline: 3px solid #06f; outline-offset: 2px; }
+#remaining { margin: 0; color: #666; }
+#play { justify-content: space-between; padding: 8px 0; }
+#timer { font-size: 3rem; font-variant-numeric: tabular-nums; font-weight: 700; }
+#timer.low { color: #d00; }
+#word { flex: 1; display: flex; align-items: center; justify-content: center; font-size: clamp(2.2rem, 10vw, 4rem); font-weight: 700; line-height: 1.15; overflow-wrap: anywhere; }
+.actions { display: flex; gap: 16px; width: 100%; }
+.actions button { flex: 1; padding: 28px 0; font-size: 1.6rem; }
+#score { font-size: 6rem; font-weight: 700; }

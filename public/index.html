@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mr Mime</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <section id="home">
+      <h1>Mr Mime</h1>
+      <label>Durée (secondes)
+        <input id="duration" type="number" inputmode="numeric" min="5" max="600" value="45">
+      </label>
+      <button id="start" class="primary">Lancer une session</button>
+      <p id="remaining"></p>
+      <button id="reset" class="link">Réinitialiser les mots</button>
+    </section>
+
+    <section id="play" hidden>
+      <div id="timer">45</div>
+      <div id="word"></div>
+      <div class="actions">
+        <button id="pass">Passe</button>
+        <button id="ok" class="primary">Valide</button>
+      </div>
+    </section>
+
+    <section id="end" hidden>
+      <p>Score</p>
+      <div id="score">0</div>
+      <button id="back" class="primary">Terminer</button>
+    </section>
+  </main>
+  <script src="words.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
