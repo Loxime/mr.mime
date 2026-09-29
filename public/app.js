@@ -54,6 +54,38 @@
     if (left <= 0) finish();
   }
 
+  // Son de fin : 4 bips générés par le navigateur.
+  // L'audio doit être débloqué par un clic (le bouton « Lancer une session »).
+  let audioCtx = null;
+  function unlockAudio() {
+    try {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return;
+      if (!audioCtx) audioCtx = new AC();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+    } catch (e) {}
+  }
+  function beep(start, dur, freq) {
+    const o = audioCtx.createOscillator();
+    const g = audioCtx.createGain();
+    o.type = 'square';
+    o.frequency.value = freq;
+    g.gain.setValueAtTime(0.0001, start);
+    g.gain.exponentialRampToValueAtTime(0.6, start + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001, start + dur);
+    o.connect(g);
+    g.connect(audioCtx.destination);
+    o.start(start);
+    o.stop(start + dur + 0.05);
+  }
+  function alarm() {
+    if (!audioCtx) return;
+    try {
+      const t = audioCtx.currentTime + 0.05;
+      for (let i = 0; i < 4; i++) beep(t + i * 0.35, 0.25, i === 3 ? 1175 : 880);
+    } catch (e) {}
+  }
+
   let wake = null;
   async function requestWake() {
     try { if ('wakeLock' in navigator) wake = await navigator.wakeLock.request('screen'); } catch (e) {}
@@ -74,6 +106,7 @@
     score = 0;
     endAt = Date.now() + d * 1000;
     nextWord();
+    unlockAudio();
     show('play');
     requestWake();
     renderTimer();
@@ -84,6 +117,7 @@
     clearInterval(tick);
     tick = null;
     releaseWake();
+    alarm();
     if (navigator.vibrate) navigator.vibrate(300);
     $('score').textContent = score;
     show('end');
